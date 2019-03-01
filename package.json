@@ -1,0 +1,13 @@
+{
+  "name": "paperjs-water-physics",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "dev": "http-server"
+  },
+  "author": "Floris de Haan",
+  "license": "ISC",
+  "dependencies": {
+    "paper": "^0.12.0"
+  }
+}
