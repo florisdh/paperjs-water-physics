@@ -1,6 +1,6 @@
-const SPRING_FORCE = 0.015;
-const DAMPING = 0.01;
-const SPREAD = 0.01;
+const SPRING_FORCE = 0.017;
+const DAMPING = 0.005;
+const SPREAD = 0.05;
 
 class Water {
 
@@ -8,11 +8,15 @@ class Water {
         this.x = 0;
         this.y = 400;
 
+        this.clickForce = 50;
+        this.clickSurface = 0.1;
+
         this.width = paper.view.viewSize.width;
         this.height = paper.view.viewSize.height;
 
         this.mesh = new paper.Path();
         this.mesh.fillColor = '#66f';
+        this.mesh.onClick = this.onClick.bind(this);
 
         this.points = [];
         this.totalPoints = totalPoints;
@@ -21,6 +25,14 @@ class Water {
         }
 
         this.resize();
+    }
+
+    onClick(event) {
+        const pointX = Math.round(event.point.x / this.spacing);
+        const surface = Math.floor(this.width * this.clickSurface / this.spacing / 2) * 2;
+        for (var i = -surface; i <= surface; i++) {
+            this.splash((pointX + i) % this.totalPoints, Math.cos(i / surface * Math.PI / 2 * (0.8 + Math.random() * 0.2)) * this.clickForce);
+        }
     }
 
     splash(x, force) {
@@ -83,9 +95,6 @@ class WaterPoint extends paper.Shape.Circle {
             radius: 10,
             fillColor: 'rgba(1,1,1,0)'
         });
-
-        this.alpha = 0;
         this.velocity = 0;
     }
-
 }
