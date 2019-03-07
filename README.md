@@ -1,6 +1,8 @@
 # PaperJS Water Physics
 Simple water physics demo in the paperjs framework.
 
+![](resources/demo.gif)
+
 ## Setup
 - Clone project
 - Npm install
